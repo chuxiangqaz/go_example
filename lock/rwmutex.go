@@ -68,6 +68,7 @@ func readAndWrite() {
 	fmt.Println("readAndWrite end.................")
 }
 
+// 读锁和写锁等待执行
 func readAndWriteNotWait() {
 	lock := &sync.RWMutex{}
 	lock.Unlock()
