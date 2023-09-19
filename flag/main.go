@@ -4,17 +4,18 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"net"
 	"strconv"
 )
 
 // flag
 // flag 实现了命令行参数的解析
-// 可以通过三种方式去解析 flag.Int flag.IntVar customVar 等方式去解析
+// 可以通过三种方式去解析 flag.Int flag.IntVar  flag.TextVar customVar 等方式去解析
 // 可以使用 flag.FlagSet 类型去解析非命令行参数, 函数参见: flagSet
 // tips: 当存在为解析的参数就会发生 panic
 func main() {
-	flagToType()
-	//flagToVar()
+	//flagToType()
+	flagToVar()
 	//customType()
 	//customStruct()
 	//flagSet()
@@ -45,15 +46,19 @@ func flagToType() {
 }
 
 // 同 flagToType 一样,这是解析函数不一样
+//
+//	go run main.go  --name=chuxiang --age=180 --sex=true --ip=387.0.0.1
 func flagToVar() {
 	var name string
 	var age int
 	var sex bool
+	var ip net.IP
 	flag.StringVar(&name, "name", "", "请输入你的姓名")
 	flag.IntVar(&age, "age", 18, "请输入你的年龄")
 	flag.BoolVar(&sex, "sex", false, "是否是男生")
+	flag.TextVar(&ip, "ip", net.IPv4(192, 168, 0, 100), "请输入IP")
 	flag.Parse()
-	fmt.Printf("user info \n\tname:%s \n\tage:%d\n\tis man:%t\n", name, age, sex)
+	fmt.Printf("user info \n\tname:%s \n\tage:%d\n\tis man:%t\n\tip:%s\n", name, age, sex, ip.String())
 }
 
 type customVar int
