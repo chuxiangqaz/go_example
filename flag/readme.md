@@ -116,7 +116,7 @@ func customStruct() {
 flag包的 `flagSet` 结构体可以用来解析自定义字符串。
 
 ```go
-// go run main.go --name=chuxiang
+// go run main.go 
 package main
 
 import (
@@ -130,6 +130,7 @@ func main() {
 func flagSet() {
    commandLine := flag.NewFlagSet("my_flag", flag.ExitOnError)
    name := commandLine.String("name", "defalut", "请输入你的姓名")
+   // 解析该字符串
    commandLine.Parse([]string{"--name=chuxiang"})
    fmt.Println(*name)
 }
@@ -149,4 +150,4 @@ func flagSet() {
 
 ## WHY
 
-> 清楚某个东西【为什么】设计成这样？【为什么】不是另外的样子？这样的设计有什么讲究
+> 有什么优先的代码值得学习，
