@@ -71,7 +71,6 @@ func readAndWrite() {
 // 读锁和写锁等待执行
 func readAndWriteNotWait() {
 	lock := &sync.RWMutex{}
-	lock.Unlock()
 	go func() {
 		if !lock.TryRLock() {
 			fmt.Println("i am [one] not get read lock")

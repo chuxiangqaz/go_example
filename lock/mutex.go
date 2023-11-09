@@ -26,10 +26,12 @@ func main() {
 	//add()
 
 	tryLock()
+
 }
 
 func tryLock() {
 	lock := &sync.Mutex{}
+
 	for i := 0; i < 10; i++ {
 		go func() {
 			// tryLock 以非堵塞摸索取锁, true 代表加锁成功
